@@ -113,7 +113,7 @@ public class CameraPhotoManager : MonoBehaviour {
         cameraImage.texture = activeCameraTexture;
         //cameraImage.material.mainTexture = activeCameraTexture;
         Vector3 scale = cameraImage.transform.localScale;
-        scale.x = cameraToUse == frontCameraTexture ? -Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        scale.x = cameraToUse == frontCameraTexture ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
         cameraImage.transform.localScale = scale;
         Debug.Log(scale);
         activeCameraTexture.Play();
@@ -201,7 +201,7 @@ public class CameraPhotoManager : MonoBehaviour {
 
     private void InitPrototype (Sprite initSprite) {
         GetComponent<PrototypeManager>().InitPrototype(initSprite);
-        transform.Find("PrototypeTransform").localScale = cameraImage.transform.localScale;
+        transform.Find("PrototypeTransform").localScale = transform.Find("ResultImage").localScale;
         transform.Find("Player").gameObject.SetActive(true);
     }
 
