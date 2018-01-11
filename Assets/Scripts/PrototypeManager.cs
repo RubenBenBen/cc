@@ -27,9 +27,11 @@ public class PrototypeManager : MonoBehaviour {
 
         //Debug.Log(vectorScale);
 
-        Debug.Log(spriteRenderer.GetComponent<PolygonCollider2D>().points.Length);
-        prototypeTransform.GetComponent<PolygonCollider2D>().points =
-            ScalePoints(spriteRenderer.GetComponent<PolygonCollider2D>().points, vectorScale);
+        prototypeTransform.GetComponent<PolygonCollider2D>().pathCount = spriteRenderer.GetComponent<PolygonCollider2D>().pathCount;
+        for (int i = 0 ; i < spriteRenderer.GetComponent<PolygonCollider2D>().pathCount ; i++) {
+            prototypeTransform.GetComponent<PolygonCollider2D>().
+                SetPath(i, ScalePoints(spriteRenderer.GetComponent<PolygonCollider2D>().GetPath(i), vectorScale));
+        }
     }
 
     private Vector2[] ScalePoints (Vector2[] points, Vector2 scale) {
